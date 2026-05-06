@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVC × HVC — Strategic Discussion with WELL Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     MVC × HVC — WELL Health Strategic Discussion
+     Aesthetic: Luxury editorial. Black & gold. Serif display + clean sans.
+     ------------------------------------------------------------------ */
+
+  :root {
+    --black: #0a0a0a;
+    --black-2: #111111;
+    --black-3: #1a1a1a;
+    --ink: #050505;
+    --gold: #c5a24d;
+    --gold-light: #e8c84a;
+    --gold-deep: #9a7b2a;
+    --gold-soft: rgba(197, 162, 77, 0.15);
+    --gold-line: rgba(197, 162, 77, 0.3);
+    --cream: #f5ede0;
+    --bone: #ebe3d4;
+    --text: #e8e2d4;
+    --text-muted: #9a958a;
+    --text-dim: #6b6760;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--black);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Slide layout */
+  .slide {
+    min-height: 100vh;
+    padding: 5rem 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid var(--gold-line);
+  }
+
+  .slide:last-child { border-bottom: none; }
+
+  .container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Slide number — top right */
+  .slide-number {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .slide-number::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* Section eyebrow */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    position: relative;
+    padding-left: 0;
+  }
+
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  /* When the eyebrow is centered, center the line too */
+  [style*="text-align: center"].eyebrow::before,
+  .slide-title .eyebrow::before,
+  .slide-discussion .eyebrow::before {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Headlines */
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.005em;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .gold-text {
+    color: var(--gold);
+  }
+
+  .gold-text-grad {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+  }
+
+  .lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 820px;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 720px;
+    margin-bottom: 1rem;
+  }
+
+  /* Ornament */
+  .ornament {
+    width: 80px;
+    height: 12px;
+    position: relative;
+    margin: 0 auto 1.5rem;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .ornament::before { left: -10px; }
+  .ornament::after { right: -10px; }
+
+  .ornament-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: translateY(-50%);
+  }
+
+  /* Slide 1 — title */
+  .slide-title {
+    background: radial-gradient(ellipse at center, #161616 0%, var(--black) 70%);
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-title .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide-title h1 {
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1;
+    margin: 1.5rem 0;
+  }
+
+  .slide-title h1 .row1 { display: block; }
+  .slide-title h1 .row2 {
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .slide-title .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    color: var(--text);
+    max-width: 720px;
+    margin: 1.5rem auto 0;
+  }
+
+  .slide-title .audience-row {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gold-line);
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .slide-title .audience-row .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .slide-title .audience-row .names {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .slide-title .audience-row .name-block {
+    display: inline-block;
+    margin: 0 1.5rem;
+  }
+
+  .slide-title .audience-row .name {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .slide-title .audience-row .role {
+    display: block;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* Footer slug */
+  .slide-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* Two-column generic */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  /* Numbered card */
+  .card {
+    position: relative;
+    padding: 2rem 1.75rem;
+    border: 1px solid var(--gold-line);
+    background: var(--black-2);
+    transition: border-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .card .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--gold);
+  }
+
+  .card .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .card .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .card .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .card .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .card .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  /* Stat */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .stat {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--gold-line);
+  }
+
+  .stat .num {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat .lbl {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat .desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Slide 3 — two clinic columns */
+  .clinic-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .clinic-block {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--gold-line);
+    background: var(--black-2);
+    position: relative;
+  }
+
+  .clinic-block .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--gold);
+  }
+  .clinic-block .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .clinic-block .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .clinic-block .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .clinic-block .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .clinic-block .mark {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .clinic-block .name {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .clinic-block .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .clinic-block p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .platform-attrs {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--gold-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    justify-content: center;
+  }
+
+  .platform-attrs span::before {
+    content: "◆";
+    color: var(--gold);
+    margin-right: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  /* Service list */
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .service-grid .item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(197, 162, 77, 0.15);
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .service-grid .item::before {
+    content: "—";
+    color: var(--gold);
+    margin-right: 0.75rem;
+  }
+
+  /* Pill row */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .pill {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--gold-line);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Compliance two-stream */
+  .stream-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .stream {
+    padding: 2rem;
+    background: var(--black-2);
+    border: 1px solid var(--gold-line);
+    position: relative;
+  }
+
+  .stream .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .stream h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .stream p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .compliance-note {
+    margin-top: 2rem;
+    padding: 1.5rem 1.75rem;
+    border-left: 2px solid var(--gold);
+    background: var(--black-2);
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 100%;
+  }
+
+  /* Team stats — slide 6 */
+  .team-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .team-stat {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid var(--gold-line);
+    background: var(--black-2);
+    position: relative;
+  }
+
+  .team-stat .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--gold);
+  }
+  .team-stat .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .team-stat .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .team-stat .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .team-stat .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .team-stat .num {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-stat .lbl {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .team-stat .desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Physical platform — slide 7 */
+  .platform-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .platform-card {
+    padding: 2.25rem 2rem;
+    background: var(--black-2);
+    border: 1px solid var(--gold-line);
+    position: relative;
+  }
+
+  .platform-card .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .platform-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .platform-card .desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .platform-callout {
+    margin-top: 2rem;
+    padding: 1.75rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--gold-line);
+    border-bottom: 1px solid var(--gold-line);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Slide 8 — partnerships (the rocket launch slide) */
+  .partner-eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .partner-narrative {
+    margin: 0 0 2.5rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    line-height: 1.55;
+  }
+
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .partner-tier-eyebrow {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--gold-line);
+    margin-top: 0.5rem;
+  }
+
+  .partner-tier-eyebrow:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .partner-card {
+    padding: 1.75rem 1.5rem;
+    background: var(--black-2);
+    border: 1px solid var(--gold-line);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .partner-card:hover {
+    border-color: var(--gold);
+    background: var(--black-3);
+  }
+
+  .partner-card .corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--gold);
+  }
+  .partner-card .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .partner-card .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .partner-card .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .partner-card .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .partner-card .partner-name {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .partner-card .partner-reach {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  .partner-card .partner-reach .big {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 500;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .partner-card .partner-reach .scope {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .partner-card .partner-detail {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 0.6rem;
+  }
+
+  .partner-card.compact {
+    padding: 1.25rem 1.4rem;
+  }
+
+  .partner-card.compact .partner-name {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .partner-card.compact .partner-detail {
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Strategic fit — slide 9 */
+  .fit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .fit-item {
+    padding: 1.5rem 1.25rem;
+    border-left: 2px solid var(--gold);
+    background: var(--black-2);
+  }
+
+  .fit-item h4 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .fit-item p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .fit-callout {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold);
+  }
+
+  /* Slide 10 — discussion / closing */
+  .slide-discussion {
+    background: radial-gradient(ellipse at center, #161616 0%, var(--black) 70%);
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-discussion .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .discussion-list {
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 3rem;
+    max-width: 880px;
+  }
+
+  .discussion-list .item {
+    text-align: left;
+    padding: 0.85rem 0;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--gold-line);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .discussion-list .item .ix {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold);
+    min-width: 1.5rem;
+  }
+
+  .closing-line {
+    margin: 2rem auto;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 760px;
+  }
+
+  .closing-line .gold-text {
+    font-weight: 500;
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal.delay-1 { transition-delay: 0.05s; }
+  .reveal.delay-2 { transition-delay: 0.1s; }
+  .reveal.delay-3 { transition-delay: 0.15s; }
+  .reveal.delay-4 { transition-delay: 0.2s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .slide { padding: 4rem 3rem; }
+    .grid-2, .clinic-pair, .stream-pair, .platform-pair, .partner-grid {
+      grid-template-columns: 1fr;
+    }
+    .grid-3, .stat-row, .team-stats, .fit-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+    .discussion-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .slide { padding: 3rem 1.5rem; }
+    .slide-number { right: 1.5rem; top: 1.5rem; }
+    .slide-footer { left: 1.5rem; right: 1.5rem; bottom: 1.5rem; flex-direction: column; gap: 0.5rem; }
+    .grid-3, .stat-row, .team-stats, .fit-grid {
+      grid-template-columns: 1fr;
+    }
+    .slide-title h1 { font-size: 3rem; }
+    .slide-title .audience-row .name-block { display: block; margin: 1rem 0; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; color: black; }
+    .slide { page-break-after: always; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== SLIDE 1 — TITLE ============== -->
+<section class="slide slide-title" id="s1">
+  <div class="slide-number reveal">01 / 10</div>
+  <div class="container">
+    <div class="ornament reveal"><span class="ornament-line"></span></div>
+    <div class="eyebrow reveal" style="text-align: center;">Strategic Discussion</div>
+    <h1 class="reveal delay-1">
+      <span class="row1">The Men's Vitality Clinic</span>
+      <span class="row2 gold-text-grad">Her Vitality Clinic</span>
+    </h1>
+    <p class="subtitle reveal delay-2">A physician-led longevity, hormone, metabolic, and preventive health platform.</p>
+
+    <div class="audience-row reveal delay-3">
+      <div class="label">Prepared for</div>
+      <div class="names">
+        <span class="name-block">
+          <span class="name">Brian Levinkind</span>
+          <span class="role">SVP Corporate Development</span>
+        </span>
+        <span class="name-block">
+          <span class="name">Erik Danudjaja</span>
+          <span class="role">Senior Associate, Corporate Dev &amp; Strategy</span>
+        </span>
+        <span class="name-block">
+          <span class="name">Dr. Grant Meek</span>
+          <span class="role">Medical Director, WELL Longevity</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SLIDE 2 — CATEGORY ============== -->
+<section class="slide" id="s2">
+  <div class="slide-number reveal">02 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">01 · Category</div>
+    <h2 class="reveal delay-1">A category <span class="gold-text-grad">in inflection.</span></h2>
+    <p class="lede reveal delay-2">Longevity, metabolic health, hormone optimization, and prevention have moved from fringe to mainstream consumer healthcare.</p>
+
+    <div class="grid-3">
+      <div class="card reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">i.</div>
+        <h3>Demand has changed.</h3>
+        <p>Patients are seeking proactive, physician-led care — body composition, metabolic risk, hormones, early detection — well before disease appears.</p>
+      </div>
+      <div class="card reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">ii.</div>
+        <h3>Supply has not kept pace.</h3>
+        <p>The traditional system is built around episodic, reactive care. Few providers are organized around longitudinal, biomarker-driven optimization.</p>
+      </div>
+      <div class="card reveal delay-3">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">iii.</div>
+        <h3>Adjacent categories validate it.</h3>
+        <p>GLP-1 adoption, hormone therapy growth, and consumer interest in DEXA, VO₂, CGM, and preventive imaging signal a durable shift in willingness to pay.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Why this matters now</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 3 — PLATFORM ============== -->
+<section class="slide" id="s3">
+  <div class="slide-number reveal">03 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">02 · Platform</div>
+    <h2 class="reveal delay-1">Two clinics. <span class="gold-text-grad">One operating platform.</span></h2>
+    <p class="lede reveal delay-2">Built deliberately. Operationally refined. Now ready to scale.</p>
+
+    <div class="clinic-pair">
+      <div class="clinic-block reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="mark">MVC</div>
+        <div class="name">Men's Vitality Clinic</div>
+        <div class="tagline">— The original platform</div>
+        <p>Launched approximately 18 months ago. Operations were refined over the first year. Growth has accelerated meaningfully over the last six months as workflows and the membership model have been dialled in.</p>
+      </div>
+      <div class="clinic-block reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="mark">HVC</div>
+        <div class="name">Her Vitality Clinic</div>
+        <div class="tagline">— Demand-led extension</div>
+        <p>Operationalized over the last three months in direct response to demand from MVC patients seeking equivalent care for partners and spouses. A demand-led launch on top of a proven operating model.</p>
+      </div>
+    </div>
+
+    <div class="platform-attrs reveal delay-3">
+      <span>Physician-led</span>
+      <span>Private, membership-based</span>
+      <span>Headquartered in British Columbia</span>
+      <span>Emerging interest in Alberta</span>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Who we are</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 4 — MODEL ============== -->
+<section class="slide" id="s4">
+  <div class="slide-number reveal">04 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">03 · Model</div>
+    <h2 class="reveal delay-1">Hybrid care. <span class="gold-text-grad">Membership economics.</span></h2>
+    <p class="lede reveal delay-2">Clinically rigorous, operationally scalable, and built for longitudinal relationships rather than episodic visits.</p>
+
+    <div class="pill-row reveal delay-3">
+      <span class="pill">Hybrid Telehealth + In-Office</span>
+      <span class="pill">Membership-Based Recurring Care</span>
+      <span class="pill">Biomarker-Driven Protocols</span>
+    </div>
+
+    <div class="eyebrow reveal" style="margin-top: 2rem;">Core services</div>
+    <div class="service-grid">
+      <div class="item reveal delay-1">Testosterone &amp; hormone optimization</div>
+      <div class="item reveal delay-1">Advanced laboratory diagnostics</div>
+      <div class="item reveal delay-2">Fertility-preserving TRT protocols (incl. HCG)</div>
+      <div class="item reveal delay-2">Cancer risk assessment &amp; early detection</div>
+      <div class="item reveal delay-3">Medical weight loss &amp; GLP-1 therapies</div>
+      <div class="item reveal delay-3">Preventive imaging referrals &amp; protocols</div>
+      <div class="item reveal delay-4">DEXA body composition &amp; VO₂ max testing</div>
+      <div class="item reveal delay-4">Lifestyle, performance &amp; longevity coaching</div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Clinical model</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 5 — COMPLIANCE ============== -->
+<section class="slide" id="s5">
+  <div class="slide-number reveal">05 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">04 · Compliance &amp; Model</div>
+    <h2 class="reveal delay-1">A compliant hybrid model. <span class="gold-text-grad">Insured and uninsured pathways.</span></h2>
+    <p class="lede reveal delay-2">Substantial internal work has gone into structuring MVC and HVC as a physician-led operating model that cleanly separates publicly insured care from privately funded optimization services.</p>
+
+    <div class="stream-pair">
+      <div class="stream reveal delay-1">
+        <div class="label">MSP-Insured Stream</div>
+        <h3>Medically indicated care</h3>
+        <p>Recently introduced in response to patient demand for medically indicated assessments. Operates within standard MSP billing rules, clinical scope, and CPSBC expectations.</p>
+      </div>
+      <div class="stream reveal delay-2">
+        <div class="label">Private Membership Stream</div>
+        <h3>Optimization, longevity, performance</h3>
+        <p>Membership care remains focused on uninsured services: optimization, longevity, performance, DEXA, VO₂ max, advanced wellness planning, and prevention-oriented coaching.</p>
+      </div>
+    </div>
+
+    <div class="compliance-note reveal delay-3">
+      Full separation across documentation, consent, billing, and patient communication. BC's Medicare Protection Act and CPSBC guidance impose meaningful constraints on physician-led private care — the model is built to preserve compliance while improving access, continuity, and scalability.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Compliance</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 6 — TEAM & OPERATIONS ============== -->
+<section class="slide" id="s6">
+  <div class="slide-number reveal">06 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">05 · Team &amp; Operations</div>
+    <h2 class="reveal delay-1">The model is now operationalized — <span class="gold-text-grad">and ready to scale.</span></h2>
+    <p class="lede reveal delay-2">Clinical capacity, workflows, and patient experience have moved from build phase to scale phase.</p>
+
+    <div class="team-stats">
+      <div class="team-stat reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">4</div>
+        <div class="lbl">Physicians</div>
+        <div class="desc">Currently practising across MVC and HVC, with shared clinical governance.</div>
+      </div>
+      <div class="team-stat reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">+1</div>
+        <div class="lbl">NP Joining</div>
+        <div class="desc">Experienced Nurse Practitioner expanding clinical capacity without diluting the model.</div>
+      </div>
+      <div class="team-stat reveal delay-3">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="num">12+ <span style="font-size: 1.5rem;">mo</span></div>
+        <div class="lbl">Refinement</div>
+        <div class="desc">Workflows, intake, follow-up, and coaching now scalable.</div>
+      </div>
+    </div>
+
+    <div class="compliance-note reveal delay-4">
+      Sustained word-of-mouth growth and high patient satisfaction — early but durable signals of product-market fit.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Team and operations</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 7 — PHYSICAL PLATFORM ============== -->
+<section class="slide" id="s7">
+  <div class="slide-number reveal">07 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">06 · Physical Platform</div>
+    <h2 class="reveal delay-1">Co-located inside <span class="gold-text-grad">Regen Recovery.</span></h2>
+    <p class="lede reveal delay-2">A differentiated medical, performance, and recovery ecosystem under one roof — difficult to replicate, especially for telehealth-only competitors.</p>
+
+    <div class="platform-pair">
+      <div class="platform-card reveal delay-1">
+        <div class="label">Clinical</div>
+        <h3>MVC + HVC physician care</h3>
+        <div class="desc">Consultations, protocol management, longitudinal review, hormone and metabolic care, advanced labs, and longevity coaching.</div>
+      </div>
+      <div class="platform-card reveal delay-2">
+        <div class="label">Performance &amp; Recovery</div>
+        <h3>Regen Recovery facilities</h3>
+        <div class="desc">DEXA, VO₂ max, sauna, cold plunge, hyperbaric oxygen, IV therapy lounge, red-light therapy, physiotherapy, and registered massage therapy.</div>
+      </div>
+    </div>
+
+    <div class="platform-callout reveal delay-3">
+      A patient can complete a hormone consult, a DEXA scan, and a hyperbaric session within the same visit — a brand experience that is structurally hard to replicate.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Physical platform</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 8 — GROWTH & PARTNERSHIPS (THE ROCKET LAUNCH SLIDE) ============== -->
+<section class="slide" id="s8">
+  <div class="slide-number reveal">08 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">07 · Growth &amp; Partnerships</div>
+    <h2 class="reveal delay-1">Organic growth. <span class="gold-text-grad">Marketing has barely begun.</span></h2>
+    <p class="partner-narrative reveal delay-2">Acquisition to date has been almost entirely word-of-mouth. Partnerships are stacking quickly across complementary fitness, recovery, and lifestyle channels — putting MVC + HVC in front of tens of thousands of in-market consumers, with the marketing engine still on the runway.</p>
+
+    <div class="partner-grid">
+
+      <div class="partner-tier-eyebrow reveal">Live · Trained · In-Market</div>
+
+      <div class="partner-card reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">Anytime Fitness</div>
+        <div class="partner-reach">
+          <span class="big">9</span>
+          <span class="scope">Locations · Lower Mainland</span>
+        </div>
+        <div class="partner-reach">
+          <span class="big">~20K</span>
+          <span class="scope">Members reached</span>
+        </div>
+        <div class="partner-detail">All staff — personal trainers, managers, front desk — trained on the MVC conversation framework. Co-branded retractable banners installed across locations.</div>
+      </div>
+
+      <div class="partner-card reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">Club Pilates</div>
+        <div class="partner-reach">
+          <span class="big">7</span>
+          <span class="scope">Locations on board</span>
+        </div>
+        <div class="partner-reach">
+          <span class="big">~10K</span>
+          <span class="scope">Member audience</span>
+        </div>
+        <div class="partner-detail">Integration in motion. Studio-level partnerships building toward the same trained-staff and on-site brand-presence model deployed at Anytime Fitness.</div>
+      </div>
+
+      <div class="partner-tier-eyebrow reveal">Active Engagement</div>
+
+      <div class="partner-card compact reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">Training Day Cafe</div>
+        <div class="partner-detail">Surrey location. Thousands of customers actively learning about MVC through in-store presence and trained staff conversations.</div>
+      </div>
+
+      <div class="partner-card compact reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">SpineWorks</div>
+        <div class="partner-detail">Hundreds of active clients. RMTs and chiropractors trained to identify and refer optimization candidates.</div>
+      </div>
+
+      <div class="partner-tier-eyebrow reveal">Gaining Traction</div>
+
+      <div class="partner-card compact reveal delay-1">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">Public-sector wellness</div>
+        <div class="partner-detail">Early-stage B2B conversations developing with first-responder organizations and benefits brokers — additional channels emerging organically alongside.</div>
+      </div>
+
+      <div class="partner-card compact reveal delay-2">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="partner-name">Adjacent fitness &amp; lifestyle</div>
+        <div class="partner-detail">Yoga, physio, and movement studios across Greater Vancouver in inbound conversations. The partnership flywheel is starting to turn on its own.</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Partnerships and growth</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 9 — STRATEGIC FIT ============== -->
+<section class="slide" id="s9">
+  <div class="slide-number reveal">09 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal">08 · Strategic Fit</div>
+    <h2 class="reveal delay-1">Where the alignment <span class="gold-text-grad">with WELL sits.</span></h2>
+    <p class="lede reveal delay-2">MVC + HVC sits inside several of WELL's stated strategic priorities — and an operational relationship is already in place.</p>
+
+    <div class="fit-grid">
+      <div class="fit-item reveal delay-1">
+        <h4>Longevity &amp; preventive care</h4>
+        <p>Direct overlap with WELL Longevity's clinical thesis and category positioning.</p>
+      </div>
+      <div class="fit-item reveal delay-1">
+        <h4>Hybrid care delivery</h4>
+        <p>Operating model already proven across telehealth and in-office hybrid workflows.</p>
+      </div>
+      <div class="fit-item reveal delay-1">
+        <h4>Physician-led governance</h4>
+        <p>Clinical leadership, protocols, and quality controls aligned with WELL's standard.</p>
+      </div>
+      <div class="fit-item reveal delay-2">
+        <h4>Membership recurring care</h4>
+        <p>Revenue model built on longitudinal relationships rather than episodic visits.</p>
+      </div>
+      <div class="fit-item reveal delay-2">
+        <h4>Preventive imaging</h4>
+        <p>Active referral and protocol pathways into WELL Longevity imaging today.</p>
+      </div>
+      <div class="fit-item reveal delay-2">
+        <h4>Scalable private healthcare</h4>
+        <p>Operating platform validated across two clinics — ready for geographic expansion.</p>
+      </div>
+    </div>
+
+    <div class="fit-callout reveal delay-3">
+      MVC + HVC already partner with WELL Longevity for imaging and preventive protocols.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>MVC + HVC · Confidential</span>
+    <span>Strategic fit</span>
+  </div>
+</section>
+
+<!-- ============== SLIDE 10 — DISCUSSION ============== -->
+<section class="slide slide-discussion" id="s10">
+  <div class="slide-number reveal">10 / 10</div>
+  <div class="container">
+    <div class="eyebrow reveal" style="text-align: center;">09 · Discussion</div>
+    <h2 class="reveal delay-1">What we'd value <span class="gold-text-grad">exploring today.</span></h2>
+
+    <div class="discussion-list">
+      <div class="item reveal delay-1"><span class="ix">i.</span><span>Strategic partnership opportunities</span></div>
+      <div class="item reveal delay-1"><span class="ix">ii.</span><span>M&amp;A pathways</span></div>
+      <div class="item reveal delay-2"><span class="ix">iii.</span><span>Scaling support &amp; operational infrastructure</span></div>
+      <div class="item reveal delay-2"><span class="ix">iv.</span><span>Expansion beyond British Columbia</span></div>
+      <div class="item reveal delay-3"><span class="ix">v.</span><span>Alignment with WELL's longevity strategy</span></div>
+      <div class="item reveal delay-3"><span class="ix">vi.</span><span>Operational integration with WELL platform</span></div>
+    </div>
+
+    <div class="ornament reveal delay-3"><span class="ornament-line"></span></div>
+
+    <p class="closing-line reveal delay-4">
+      MVC and HVC are early — but positioned in <span class="gold-text">the right category</span>, with <span class="gold-text">the right model</span>, at <span class="gold-text">the right time.</span>
+    </p>
+    <p class="closing-line reveal delay-4" style="font-size: 1.2rem; color: var(--text-muted);">
+      We would value WELL's perspective on how best to scale.
+    </p>
+  </div>
+</section>
+
+<script>
+  // Reveal-on-scroll observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
